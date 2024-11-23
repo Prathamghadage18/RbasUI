@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "Admin",
+      "status": "Active"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "permissions": [
+        "Read",
+        "Write",
+        "Delete"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "User",
+      "permissions": [
+        "Read"
+      ]
+    }
+  ],
+  "permissions": [
+    {
+      "id": "1",
+      "name": "Read"
+    },
+    {
+      "id": "2",
+      "name": "Write"
+    },
+    {
+      "id": "3",
+      "name": "Delete"
+    }
+  ]
+}
