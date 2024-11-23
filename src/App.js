@@ -10,15 +10,21 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <div style={{ display: "flex" }}>
-        <Sidebar />
-        <main style={{ padding: "20px", width: "100%" }}>
+      <div style={{ width:"full" ,display: "flex",}}>
+       
+          <div style={{ borderTop:"1px solid white", width:"20%" }}>
+            <Sidebar />
+          </div>
+        
+          <main style={{ padding: "20px", width:"80%" }} >
           <Routes>
             <Route path="/users" element={<UsersPage />} />
             <Route path="/roles" element={<RolesPage />} />
             <Route path="/permissions" element={<PermissionsPage />} />
           </Routes>
         </main>
+        
+        
       </div>
     </Router>
   );

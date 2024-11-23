@@ -53,7 +53,7 @@ const RolesPage = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button style={{ display:"flex", float:"right"}} variant="contained" onClick={() => setOpen(true)}>
         Add Role
       </Button>
       <Table>
@@ -75,6 +75,10 @@ const RolesPage = () => {
               </TableCell>
               <TableCell>
                 <Button
+                variant="outlined" 
+                size="small"
+                margin="normal"
+                style={{marginRight:"5px"}}
                   onClick={() => {
                     setForm(role);
                     setOpen(true);
@@ -82,7 +86,12 @@ const RolesPage = () => {
                 >
                   Edit
                 </Button>
-                <Button onClick={() => handleDelete(role.id)}>Delete</Button>
+                <Button 
+                variant="outlined" 
+                size="small"
+                margin="normal"
+                style={{marginRight:"5px"}}
+                onClick={() => handleDelete(role.id)}>Delete</Button>
               </TableCell>
             </TableRow>
           ))}
