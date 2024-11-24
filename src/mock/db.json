@@ -31,20 +31,10 @@
   ],
   "roles": [
     {
-      "id": "1",
-      "name": "Admin",
-      "permissions": [
-        "Read",
-        "Write",
-        "Delete"
-      ]
-    },
-    {
       "id": "2",
       "name": "User",
       "permissions": [
-        "Read",
-        "Write"
+        "Read"
       ]
     }
   ],

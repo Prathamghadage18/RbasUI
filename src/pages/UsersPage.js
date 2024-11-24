@@ -26,9 +26,14 @@ const UsersPage = () => {
     status: "",
   });
 
+  let ifAdminLogin = localStorage.getItem('admin');
+  console.log("user :"+ifAdminLogin);
   useEffect(() => {
+    ifAdminLogin = localStorage.getItem('admin');
     fetchUsers();
   }, []);
+
+
 
   const fetchUsers = async () => {
     const data = await getUsers();
@@ -64,9 +69,11 @@ const UsersPage = () => {
 
   return (
     <div>
-      <Button style={{ display:"flex", float:"right"}} variant="contained" onClick={() => setOpen(true)}>
-        Add User
-      </Button>
+      {ifAdminLogin === true &&
+        <Button style={{ display: "flex", float: "right" }} variant="contained" onClick={() => setOpen(true)}>
+          + Add User
+        </Button>
+      }
       <Table responsive>
         <TableHead >
           <TableRow>
@@ -80,32 +87,35 @@ const UsersPage = () => {
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}
-            style={{backgroundColor:"hover:blue"}}
+              style={{ backgroundColor: "hover:blue" }}
             >
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
               <TableCell>{user.status}</TableCell>
-              <TableCell>
-                <Button
-                  variant="outlined" 
-                  size="small"
-                  margin="normal"
-                  style={{marginRight:"5px"}}
-                  onClick={() => {
-                    setForm(user);
-                    setOpen(true);
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button 
-                variant="outlined" size="small"  margin="normal"
-                  onClick={() => handleDelete(user.id)}
-                >
-                  Delete
-                </Button>
-              </TableCell>
+              {ifAdminLogin === true &&
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    margin="normal"
+                    style={{ marginRight: "5px" }}
+                    onClick={() => {
+                      setForm(user);
+                      setOpen(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outlined" size="small" margin="normal"
+                    onClick={() => handleDelete(user.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              }
+
             </TableRow>
           ))}
         </TableBody>
@@ -117,11 +127,11 @@ const UsersPage = () => {
           sx={{
             padding: 4,
             backgroundColor: "white",
-            display:"block",
-            position:"absolute",
-            top: "50%", 
-            left: "50%", 
-            transform: "translate(-50%, -50%)", 
+            display: "block",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             width: "50%",
           }}
         >
@@ -139,7 +149,6 @@ const UsersPage = () => {
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             fullWidth
             margin="normal"
-            required
           />
           <br /> <br />
           <InputLabel id="demo-simple-select-label ">Select Role *</InputLabel>

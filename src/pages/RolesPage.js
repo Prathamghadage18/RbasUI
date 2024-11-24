@@ -18,9 +18,12 @@ const RolesPage = () => {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ name: "", permissions: [] });
 
+  let ifAdminLogin = localStorage.getItem('admin');
+  console.log(ifAdminLogin);
   useEffect(() => {
     fetchRoles();
-  }, []);
+  });
+
 
   const fetchRoles = async () => {
     const data = await getRoles();
@@ -53,9 +56,11 @@ const RolesPage = () => {
 
   return (
     <div>
-      <Button style={{ display:"flex", float:"right"}} variant="contained" onClick={() => setOpen(true)}>
-        Add Role
-      </Button>
+      {ifAdminLogin == true &&
+        <Button style={{ display: "flex", float: "right" }} variant="contained" onClick={() => setOpen(true)}>
+          + Add Role
+        </Button>
+      }
       <Table>
         <TableHead>
           <TableRow>
@@ -73,26 +78,28 @@ const RolesPage = () => {
                   <Chip key={perm} label={perm} style={{ margin: 2 }} />
                 ))}
               </TableCell>
-              <TableCell>
-                <Button
-                variant="outlined" 
-                size="small"
-                margin="normal"
-                style={{marginRight:"5px"}}
-                  onClick={() => {
-                    setForm(role);
-                    setOpen(true);
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button 
-                variant="outlined" 
-                size="small"
-                margin="normal"
-                style={{marginRight:"5px"}}
-                onClick={() => handleDelete(role.id)}>Delete</Button>
-              </TableCell>
+              {ifAdminLogin == true &&
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    margin="normal"
+                    style={{ marginRight: "5px" }}
+                    onClick={() => {
+                      setForm(role);
+                      setOpen(true);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    margin="normal"
+                    style={{ marginRight: "5px" }}
+                    onClick={() => handleDelete(role.id)}>Delete</Button>
+                </TableCell>
+              }
             </TableRow>
           ))}
         </TableBody>
@@ -103,8 +110,11 @@ const RolesPage = () => {
           sx={{
             padding: 4,
             backgroundColor: "white",
-            margin: "auto",
-            top: "20%",
+            display: "block",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             width: "50%",
           }}
         >
@@ -132,7 +142,7 @@ const RolesPage = () => {
               />
             ))}
           </div>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button variant="outlined" margin="normal" size="medium" onClick={handleSubmit}>Submit</Button>
         </Box>
       </Modal>
     </div>
