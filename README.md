@@ -34,3 +34,6 @@ This is a React-based User Interface (UI) for managing users, roles, and permiss
 cd rbac-ui
 npm install @mui/material @emotion/react @emotion/styled axios react-router-dom json-server
 
+## To start server
+npx json-server --watch src/mock/db.json --port 5000
+
