@@ -36,4 +36,5 @@ npm install @mui/material @emotion/react @emotion/styled axios react-router-dom 
 
 ## To start server
 npx json-server --watch src/mock/db.json --port 5000
+npm start
 
